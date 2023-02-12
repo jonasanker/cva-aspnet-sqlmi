@@ -22,12 +22,12 @@ namespace Webapi
                     {
                         if (context.HostingEnvironment.IsDevelopment())
                         {
-                            configBuilder.AddEnvFile("development.env");
+                            configBuilder.AddEnvFile("appsettings.Development.json");
                         }
                         else if (context.HostingEnvironment.IsStaging() || context.HostingEnvironment.IsProduction())
                         {
-                            var builtConfig = configBuilder.Build();
-                            configBuilder.AddAzureKeyVault(new Uri($"https://{builtConfig["KeyVaultName"]}.vault.azure.net/"), new DefaultAzureCredential());
+                            // var builtConfig = configBuilder.Build();
+                            configBuilder.AddEnvFile("appsettings.json");
                         }
                     });
 

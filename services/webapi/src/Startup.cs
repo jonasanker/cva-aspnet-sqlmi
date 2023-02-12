@@ -45,6 +45,11 @@ namespace Webapi
                 app.UseDeveloperExceptionPage();
             }
 
+            using (var scope = 
+                   app.ApplicationServices.CreateScope())
+            using (var context = scope.ServiceProvider.GetService<MyDataContext>())
+                context.Database.Migrate();
+            
             app.UseSwagger();
 
             app.UseSwaggerUI(c =>
